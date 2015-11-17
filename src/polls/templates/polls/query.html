@@ -1,0 +1,68 @@
+{% extends 'polls/base.html' %}
+{% load staticfiles %}
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css'%}"/>
+{%block content%}
+<table align="right">
+<form  method="post" action="{% url 'polls:add' %}" align="right">
+{%csrf_token%}
+    <tr>
+      <td width="97" height="25">question_text</td>
+      <td width="188" height="25"> 
+        <input name="question_test" type="text">
+      </td>
+    </tr>
+    <tr>
+      <td width="97" height="25">pub_date</td>
+      <td width="188" height="25"> 
+      <input name="pub_date" type="text">
+       </td>
+    </tr>
+        <td width="188" height="25"> 
+        <input type="submit" name="Submit" value="add">
+        </td>
+        <td width="188" height="25"> 
+        <input name="enews" type="hidden" value="kkk">
+        </td>
+    </tr>
+</form>
+</table>
+
+
+
+
+ <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+                <div class="box-header">
+                  <h3 class="box-title">Hover Data Table</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>question_id</th>
+			            <th>question_test</th>
+			            <th>pub_date</th>
+			            <th>删除</th>
+			            <th>修改</th>
+			            </tr>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for q in latest_question_list %}
+                     <tr>
+		             <td>{{q.id}}</td>
+		             <td>{{q.question_test}}</td>
+		             <td>{{q.pub_date|date:"Y-m-d H:i:s"}}</td>
+		             <td><a href="{% url 'polls:delete' q.id%}">delete</a></td>
+		             <td><a href="{% url 'polls:selectone' q.id%}">update</a></td>
+		             </tr> 
+		             {% endfor %}
+                    </tbody>
+                    
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+               {% endblock %}

@@ -1,0 +1,32 @@
+{%extends 'polls/base.html'%}
+{%block content%}
+<table>
+<form  method="post" action="{% url 'polls:update' %}">
+{%csrf_token%}
+    <tr>
+      <td width="97" height="25">question_text</td>
+      <td width="188" height="25"> 
+        <input name="question_test" type="text" value="{{question.question_test}}">
+      </td>
+    </tr>
+    <tr>
+      <td width="97" height="25">pub_date</td>
+      <td width="188" height="25"> 
+      <input name="pub_date" type="text"  value="{{question.pub_date}}">
+       </td>
+    </tr>
+        <td width="188" height="25"> 
+        <input type="submit" name="Submit" value="update">
+        </td>
+        <td width="188" height="25"> 
+        <input name="enews" type="hidden" value="kkk">
+        </td>
+    </tr>
+    <tr>
+       <td width="97 heigth="25">
+         <input type="hidden" name="id" value="{{question.id}}">
+       </td>
+    </tr>
+</form>
+</table>
+{%endblock%}
